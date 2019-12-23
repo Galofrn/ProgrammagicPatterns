@@ -10,7 +10,7 @@ public class Player : Character
     InputHandler _inputHandler;
     [SerializeField] Transform _pov;
 
-    void Start()
+    protected virtual void Start()
     {
         _inputHandler = FindObjectOfType<InputHandler>();
 
