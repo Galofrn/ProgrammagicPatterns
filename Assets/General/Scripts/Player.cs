@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Player : Character
 {
-    InputHandler _inputHandler;
+    protected InputHandler _inputHandler;
     [SerializeField] Transform _pov;
 
     protected virtual void Start()
