@@ -16,6 +16,10 @@ public class InputHandler : MonoBehaviour {
 
     public event Action OnClick = delegate { };
 
+    public event Action<int> On1Pressed = delegate { };
+    public event Action<int> On2Pressed = delegate { };
+    public event Action<int> On3Pressed = delegate { };
+
     public float verticalAxis
     {
         get { return Input.GetAxis("Vertical"); }
@@ -47,5 +51,16 @@ public class InputHandler : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
             OnClick();
+
+        #region AlphaNumerics
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            On1Pressed(1);
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            On2Pressed(2);
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            On3Pressed(3);
+        #endregion
     }
 }
