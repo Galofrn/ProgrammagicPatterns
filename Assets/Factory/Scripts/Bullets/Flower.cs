@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flower : Bullet
+namespace Factory
 {
-    private void OnCollisionEnter(Collision collision)
+    public class Flower : Bullet
     {
-        GetComponent<Animator>().Play(0);
-        Destroy(GetComponent<Collider>());
-        Destroy(rb);
+        private void OnCollisionEnter(Collision collision)
+        {
+            GetComponent<Animator>().Play(0);
+            Destroy(GetComponent<Collider>());
+            Destroy(rb);
+        }
     }
 }

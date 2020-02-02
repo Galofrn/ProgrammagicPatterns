@@ -5,19 +5,22 @@ using UnityEngine;
 /// <summary>
 /// In this case, Seed can also use IBulletFactory to spawn any type of Bullet.
 /// </summary>
-public class Seed : Bullet
+namespace Factory
 {
-    public int bulletsToSpawn;
-    public IBulletFactory bulletFactory;
-
-    private void OnCollisionEnter(Collision collision)
+    public class Seed : Bullet
     {
-        for (int i = 0; i < bulletsToSpawn; i++)
+        public int bulletsToSpawn;
+        public IBulletFactory bulletFactory;
+
+        private void OnCollisionEnter(Collision collision)
         {
-            Vector3 randomPosition = new Vector3(Random.insideUnitCircle.x * i, 0, Random.insideUnitCircle.y * i);
-            var newBullet = bulletFactory.CreateBullet();
-            newBullet.transform.position = this.transform.position + randomPosition;
+            for (int i = 0; i < bulletsToSpawn; i++)
+            {
+                Vector3 randomPosition = new Vector3(Random.insideUnitCircle.x * i, 0, Random.insideUnitCircle.y * i);
+                var newBullet = bulletFactory.CreateBullet();
+                newBullet.transform.position = this.transform.position + randomPosition;
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

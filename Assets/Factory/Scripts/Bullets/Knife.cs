@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Knife : Bullet
+namespace Factory
 {
-    public float rotationSpeed;
+    public class Knife : Bullet
+    {
+        public float rotationSpeed;
+    }
 }

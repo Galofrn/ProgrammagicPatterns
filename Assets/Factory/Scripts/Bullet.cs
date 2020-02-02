@@ -7,9 +7,12 @@ using UnityEngine;
 /// without specifying what type of object he wants. In this example Shooter asks for a Bullet
 /// to the IBulletFactory and he can get different kinds of bullets (Knife, Missile, Seed) depending
 /// on wich specific implementation of IBulletFactory he chooses.
-/// </summary>
-public abstract class Bullet: MonoBehaviour
+/// </summary> 
+namespace Factory
 {
-    public int damage;
-    public Rigidbody rb;
+    public abstract class Bullet : MonoBehaviour
+    {
+        public int damage;
+        public Rigidbody rb;
+    }
 }
