@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowerFactory : MonoBehaviour, IBulletFactory
+namespace Factory
 {
-    [SerializeField] Flower _flowerPrefab;
-
-    public Bullet CreateBullet()
+    public class FlowerFactory : MonoBehaviour, IBulletFactory
     {
-        return Instantiate(_flowerPrefab);
+        [SerializeField] Flower _flowerPrefab;
+
+        public Bullet CreateBullet()
+        {
+            return Instantiate(_flowerPrefab);
+        }
     }
 }

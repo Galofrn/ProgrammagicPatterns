@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeFactory : MonoBehaviour, IBulletFactory
+namespace Factory
 {
-    [SerializeField] Knife _knifePrefab;
-
-    public Bullet CreateBullet()
+    public class KnifeFactory : MonoBehaviour, IBulletFactory
     {
-        var myKnife = Instantiate(_knifePrefab);
-        myKnife.rb.AddTorque(transform.right * myKnife.rotationSpeed);
-        return myKnife;
-    }
+        [SerializeField] Knife _knifePrefab;
 
+        public Bullet CreateBullet()
+        {
+            var myKnife = Instantiate(_knifePrefab);
+            myKnife.rb.AddTorque(transform.right * myKnife.rotationSpeed);
+            return myKnife;
+        }
+    }
 }

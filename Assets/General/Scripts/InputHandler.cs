@@ -6,61 +6,65 @@ using System;
 /// <summary>
 /// Class for input handling.
 /// </summary>
-public class InputHandler : MonoBehaviour {
-
-    public event Action<float> OnVerticalAxisChanged = delegate { };
-    public event Action<float> OnHorizontalAxisChanged = delegate { };
-    public event Action OnSteadyAxis = delegate { };
-
-    public event Action<Vector2> OnMouseMoved = delegate { };
-
-    public event Action OnClick = delegate { };
-
-    public event Action<int> On1Pressed = delegate { };
-    public event Action<int> On2Pressed = delegate { };
-    public event Action<int> On3Pressed = delegate { };
-
-    public float verticalAxis
+namespace General
+{
+    public class InputHandler : MonoBehaviour
     {
-        get { return Input.GetAxis("Vertical"); }
-    }
 
-    public float horizontalAxis
-    {
-        get { return Input.GetAxis("Horizontal"); }
-    }
+        public event Action<float> OnVerticalAxisChanged = delegate { };
+        public event Action<float> OnHorizontalAxisChanged = delegate { };
+        public event Action OnSteadyAxis = delegate { };
 
-    void Start()
-    {
-        Cursor.visible = false;
-    }
+        public event Action<Vector2> OnMouseMoved = delegate { };
 
-    void Update ()
-    {
-        if (Input.GetAxis("Vertical") != 0)
-            OnVerticalAxisChanged(Input.GetAxis("Vertical"));        
+        public event Action OnClick = delegate { };
 
-        if (Input.GetAxis("Horizontal") != 0)
-            OnHorizontalAxisChanged(Input.GetAxis("Horizontal"));
+        public event Action<int> On1Pressed = delegate { };
+        public event Action<int> On2Pressed = delegate { };
+        public event Action<int> On3Pressed = delegate { };
 
-        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
-            OnSteadyAxis();
+        public float verticalAxis
+        {
+            get { return Input.GetAxis("Vertical"); }
+        }
 
-        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-            OnMouseMoved(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
+        public float horizontalAxis
+        {
+            get { return Input.GetAxis("Horizontal"); }
+        }
 
-        if (Input.GetMouseButtonDown(0))
-            OnClick();
+        void Start()
+        {
+            Cursor.visible = false;
+        }
 
-        #region AlphaNumerics
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            On1Pressed(1);
+        void Update()
+        {
+            if (Input.GetAxis("Vertical") != 0)
+                OnVerticalAxisChanged(Input.GetAxis("Vertical"));
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            On2Pressed(2);
+            if (Input.GetAxis("Horizontal") != 0)
+                OnHorizontalAxisChanged(Input.GetAxis("Horizontal"));
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            On3Pressed(3);
-        #endregion
+            if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+                OnSteadyAxis();
+
+            if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+                OnMouseMoved(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
+
+            if (Input.GetMouseButtonDown(0))
+                OnClick();
+
+            #region AlphaNumerics
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+                On1Pressed(1);
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+                On2Pressed(2);
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+                On3Pressed(3);
+            #endregion
+        }
     }
 }

@@ -8,7 +8,10 @@ using UnityEngine;
 /// SeedFactory, MissileFactory). This way the user (Shooter) can ask for a bullet and get 
 /// different kinds of the same object without specifying wich.
 /// </summary>
-public interface IBulletFactory
+namespace Factory
 {
-    Bullet CreateBullet();
+    public interface IBulletFactory
+    {
+        Bullet CreateBullet();
+    }
 }

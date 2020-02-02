@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissileFactory : MonoBehaviour, IBulletFactory
+namespace Factory
 {
-    [SerializeField] Missile _missilePrefab;
-
-    public Bullet CreateBullet()
+    public class MissileFactory : MonoBehaviour, IBulletFactory
     {
-        return Instantiate(_missilePrefab);
+        [SerializeField] Missile _missilePrefab;
+
+        public Bullet CreateBullet()
+        {
+            return Instantiate(_missilePrefab);
+        }
     }
 }
