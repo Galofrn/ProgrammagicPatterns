@@ -13,14 +13,14 @@ namespace ChainOfResponsibility
     public class Zombie : Enemy
     {
         [SerializeField] Animator _animator;
-        Action onMoved = delegate { };
+        event Action OnMoved = delegate { };
 
         protected override void Start()
         {
             base.Start();
             foreach (var turret in FindObjectsOfType<TurretProcessor>())
             {
-                onMoved += () => turret.HandleRequest(this);
+                OnMoved += () => turret.HandleRequest(this);
             }
             Move();
         }
@@ -41,7 +41,7 @@ namespace ChainOfResponsibility
             while (true)
             {
                 yield return new WaitForSeconds(.001f);
-                onMoved();
+                OnMoved();
             }
         }
     }
