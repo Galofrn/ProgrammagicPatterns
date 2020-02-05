@@ -10,7 +10,7 @@ namespace General
     public class Player : Character
     {
         protected InputHandler _inputHandler;
-        [SerializeField] Transform _pov;
+        [SerializeField] protected Transform _pov;
 
         protected virtual void Start()
         {
