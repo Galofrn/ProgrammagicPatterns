@@ -7,35 +7,38 @@ using UnityEngine.AI;
 /// Base class for every character who's a threat to the player.
 /// Takes damage and dies if it runs out of health.
 /// </summary>
-public class Enemy : Character
+namespace General
 {
-    [SerializeField] protected NavMeshAgent _navMeshAgent;
-    [SerializeField] protected Transform _destination;
-
-    // Start is called before the first frame update
-    protected virtual void Start()
+    public class Enemy : Character
     {
-        if (!_navMeshAgent)
-            _navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.speed = speed;
-        _navMeshAgent.angularSpeed = rotationSpeed;
-    }
+        [SerializeField] protected NavMeshAgent _navMeshAgent;
+        public Transform destination;
 
-    protected override void Move()
-    {
-        if(_destination)
-            _navMeshAgent.SetDestination(_destination.position);
-    }
+        // Start is called before the first frame update
+        protected virtual void Start()
+        {
+            if (!_navMeshAgent)
+                _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent.speed = speed;
+            _navMeshAgent.angularSpeed = rotationSpeed;
+        }
 
-    public virtual void Damage(int damageAmmount)
-    {
-        life -= damageAmmount;
-        if (life <= 0)
-            Kill();
-    }
+        protected override void Move()
+        {
+            if (destination)
+                _navMeshAgent.SetDestination(destination.position);
+        }
 
-    protected virtual void Kill()
-    {
-        Destroy(gameObject);
+        public virtual void Damage(int damageAmmount)
+        {
+            life -= damageAmmount;
+            if (life <= 0)
+                Kill();
+        }
+
+        protected virtual void Kill()
+        {
+            Destroy(gameObject);
+        }
     }
 }

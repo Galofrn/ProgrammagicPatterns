@@ -1,28 +1,48 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using General;
 
 /// <summary>
-/// Zombie enemy that walks towards a destination. Used in the chain of responsibility example.
+/// Zombie enemy that walks towards a destination and announces movement. 
+/// Used in the chain of responsibility example.
 /// </summary>
-public class Zombie : Enemy
+namespace ChainOfResponsibility
 {
-    [SerializeField] Animator _animator;
-
-    // Start is called before the first frame update
-    protected override void Start()
+    public class Zombie : Enemy
     {
-        base.Start();
-        Move();
-    }
+        [SerializeField] Animator _animator;
+        Action onMoved = delegate { };
 
-    void Update()
-    {
-        _animator.SetFloat("Speed", _navMeshAgent.velocity.magnitude);
-    }
+        protected override void Start()
+        {
+            base.Start();
+            foreach (var turret in FindObjectsOfType<TurretProcessor>())
+            {
+                onMoved += () => turret.HandleRequest(this);
+            }
+            Move();
+        }
 
-    protected override void Move()
-    {
-        base.Move();
+        void Update()
+        {
+            _animator.SetFloat("Speed", _navMeshAgent.velocity.magnitude);
+        }
+
+        protected override void Move()
+        {
+            base.Move();
+            StartCoroutine(CheckMovement());
+        }
+
+        IEnumerator CheckMovement()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(.001f);
+                onMoved();
+            }
+        }
     }
 }

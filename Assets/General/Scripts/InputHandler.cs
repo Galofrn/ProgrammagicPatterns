@@ -10,6 +10,7 @@ namespace General
 {
     public class InputHandler : MonoBehaviour
     {
+        [SerializeField] bool _showCursor;
 
         public event Action<float> OnVerticalAxisChanged = delegate { };
         public event Action<float> OnHorizontalAxisChanged = delegate { };
@@ -33,9 +34,14 @@ namespace General
             get { return Input.GetAxis("Horizontal"); }
         }
 
+        public Vector2 mousePosition
+        {
+            get { return Input.mousePosition; }
+        }
+
         void Start()
         {
-            Cursor.visible = false;
+            Cursor.visible = _showCursor;
         }
 
         void Update()

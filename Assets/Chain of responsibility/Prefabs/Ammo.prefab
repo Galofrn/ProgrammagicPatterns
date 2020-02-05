@@ -167,6 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2339934158957969166}
   - component: {fileID: 5524529363562874069}
+  - component: {fileID: 5166475945589666547}
   m_Layer: 0
   m_Name: Ammo
   m_TagString: Untagged
@@ -203,3 +204,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0060404134, y: 0.015117505, z: 0.0055497196}
   m_Center: {x: -0.00012260527, y: -0.0004906814, z: 0.00012264376}
+--- !u!114 &5166475945589666547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2339934158957732654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ecf64174c280c74999cc1cc4fc55284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 7
+  _damage: 1
+  target: {fileID: 0}
